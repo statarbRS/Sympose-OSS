@@ -1,0 +1,728 @@
+.page {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  gap: 28px;
+  color: var(--text);
+}
+
+.page a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.breadcrumbs {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.breadcrumbs a {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-strong);
+}
+
+.hero {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 330px);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.hero::before {
+  position: absolute;
+  top: 0;
+  left: clamp(28px, 5vw, 56px);
+  width: 64px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--accent);
+  content: "";
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+  font-size: 0.7rem;
+  font-weight: 780;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 760;
+  letter-spacing: -0.045em;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 68ch;
+  margin: 20px 0 0;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.lede strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.primaryAction,
+.secondaryAction,
+.checkpointAction {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 720;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.primaryAction {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.primaryAction:hover {
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+  color: var(--surface);
+  text-decoration: none;
+}
+
+.secondaryAction {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.secondaryAction:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.progressCard {
+  min-width: 0;
+  display: grid;
+  gap: 13px;
+  padding: 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-muted);
+}
+
+.progressTopline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.progressTopline strong {
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+}
+
+.progressCard progress {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 99px;
+  background: var(--border);
+  accent-color: var(--accent);
+}
+
+.progressCard progress::-webkit-progress-bar {
+  border-radius: 99px;
+  background: var(--border);
+}
+
+.progressCard progress::-webkit-progress-value {
+  border-radius: 99px;
+  background: var(--accent);
+}
+
+.progressCard progress::-moz-progress-bar {
+  border-radius: 99px;
+  background: var(--accent);
+}
+
+.progressCard p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.progressBoundary {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.projectionNote {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid var(--info-border);
+  border-radius: var(--radius);
+  background: var(--info-bg);
+  color: var(--info-text);
+}
+
+.noteMark {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.projectionNote div {
+  min-width: 0;
+}
+
+.projectionNote strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.projectionNote p {
+  margin: 3px 0 0;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.projectionNote a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 4px;
+  color: var(--info-text);
+  font-size: 0.78rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.checklistSection,
+.truthSection {
+  min-width: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.sectionHeading {
+  min-width: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionHeading > div {
+  min-width: 0;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  letter-spacing: -0.025em;
+}
+
+.sectionHeading > p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.checkpointList {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkpoint {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) minmax(150px, auto);
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.checkpoint.current {
+  border-color: var(--accent-border);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.checkpoint.waiting {
+  background: color-mix(in srgb, var(--surface) 78%, var(--surface-muted));
+}
+
+.stepNumber {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.complete .stepNumber {
+  border-color: var(--success-border);
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.current .stepNumber {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.checkpoint article {
+  min-width: 0;
+}
+
+.checkpointTopline {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+.kindLabel,
+.statusLabel {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.65rem;
+  font-weight: 780;
+  letter-spacing: 0.055em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.kindEvidence,
+.kindContext,
+.kindPublication {
+  border-color: var(--neutral-border);
+  background: var(--neutral-bg);
+  color: var(--neutral-text);
+}
+
+.kindCandidate {
+  border-color: var(--candidate-border);
+  background: var(--candidate-bg);
+  color: var(--candidate);
+}
+
+.kindDecision {
+  border-color: var(--decision-border);
+  background: var(--decision-bg);
+  color: var(--decision);
+}
+
+.kindCommitment {
+  border-color: var(--commitment-border);
+  background: var(--commitment-bg);
+  color: var(--commitment);
+}
+
+.kindOperational {
+  border-color: var(--operational-border);
+  background: var(--operational-bg);
+  color: var(--operational);
+}
+
+.statusLabel {
+  border: 0;
+  color: var(--text-muted);
+}
+
+.statusLabel > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.complete .statusLabel > span {
+  background: var(--success-text);
+}
+
+.current .statusLabel > span {
+  background: var(--accent);
+}
+
+.checkpoint h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.012em;
+}
+
+.checkpoint article > p:not(.evidenceLine) {
+  max-width: 76ch;
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 0.79rem;
+  line-height: 1.5;
+}
+
+.evidenceLine {
+  min-width: 0;
+  margin: 10px 0 0;
+  color: var(--text);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.evidenceLine > span {
+  margin-right: 8px;
+  color: var(--text-muted);
+  font-size: 0.63rem;
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.checkpointAction {
+  justify-self: end;
+  background: var(--surface);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.checkpointAction:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.current .checkpointAction {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.truthGrid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.truthCard {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-top-width: 3px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.truthCard.kindCandidate {
+  border-top-color: var(--candidate);
+}
+
+.truthCard.kindDecision {
+  border-top-color: var(--decision);
+}
+
+.truthCard.kindCommitment {
+  border-top-color: var(--commitment);
+}
+
+.truthCard.kindOperational {
+  border-top-color: var(--operational);
+}
+
+.truthCard p {
+  margin: 0 0 12px;
+  color: currentColor;
+  font-size: 0.65rem;
+  font-weight: 780;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.truthCard h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.truthCard > span {
+  display: block;
+  margin-top: 7px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.publicationBoundary {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.publicationBoundary strong {
+  color: var(--text);
+}
+
+.scopeNote {
+  min-width: 0;
+  display: flex;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  overflow-wrap: anywhere;
+}
+
+.scopeNote strong {
+  flex: 0 0 auto;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 280px);
+    gap: 28px;
+  }
+
+  .checkpoint {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .checkpointAction {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .truthGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .page {
+    gap: 22px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 26px 22px 22px;
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+  }
+
+  .progressCard {
+    padding: 17px;
+  }
+
+  .projectionNote {
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .projectionNote a {
+    grid-column: 2;
+    justify-self: start;
+    padding: 0;
+  }
+
+  .sectionHeading {
+    display: grid;
+    gap: 8px;
+  }
+
+  .sectionHeading > p {
+    max-width: none;
+    text-align: left;
+  }
+
+  .checkpoint {
+    gap: 14px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .page {
+    width: 100%;
+    max-width: 100%;
+    gap: 20px;
+  }
+
+  .hero {
+    gap: 22px;
+    padding: 24px 18px 18px;
+    border-radius: var(--radius);
+  }
+
+  .hero::before {
+    left: 18px;
+  }
+
+  .hero h1 {
+    max-width: none;
+    font-size: 2rem;
+  }
+
+  .lede {
+    margin-top: 16px;
+    font-size: 0.88rem;
+  }
+
+  .heroActions {
+    display: grid;
+    margin-top: 20px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .progressTopline {
+    align-items: flex-start;
+  }
+
+  .projectionNote {
+    padding: 14px;
+  }
+
+  .checkpoint {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .stepNumber {
+    width: 36px;
+    height: 36px;
+  }
+
+  .checkpointAction {
+    width: 100%;
+    min-height: 44px;
+    justify-self: stretch;
+    white-space: normal;
+  }
+
+  .checkpointTopline {
+    align-items: flex-start;
+  }
+
+  .truthGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .scopeNote {
+    display: grid;
+    gap: 4px;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero::before,
+  .statusLabel > span {
+    background: CanvasText;
+  }
+
+  .checkpoint.current {
+    outline: 2px solid Highlight;
+    outline-offset: 1px;
+  }
+}

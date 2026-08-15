@@ -1,0 +1,92 @@
+.packet {
+  display: grid;
+  gap: 1rem;
+}
+
+.boundary {
+  padding: .8rem .9rem;
+  border-left: 3px solid var(--denial-border);
+  background: var(--denial-bg);
+  color: var(--denial-text);
+}
+
+.boundary strong {
+  display: block;
+  margin-bottom: .2rem;
+}
+
+.stateGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55rem;
+  margin: 0;
+}
+
+.stateGrid div {
+  display: grid;
+  gap: .2rem;
+  min-width: 0;
+  padding: .7rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.stateGrid dt {
+  color: var(--text-muted);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.stateGrid dd {
+  margin: 0;
+  font-weight: 750;
+}
+
+.closureList {
+  display: grid;
+  gap: .55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.closureList li {
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 1fr);
+  gap: .6rem;
+  align-items: start;
+  padding: .65rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.closureList li::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text-muted);
+  content: "·";
+  font-weight: 800;
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+@media (max-width: 700px) {
+  .stateGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packet {
+    scroll-behavior: auto;
+  }
+}

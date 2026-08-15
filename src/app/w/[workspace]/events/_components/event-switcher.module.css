@@ -1,0 +1,145 @@
+.portfolio {
+  --portfolio-line: var(--border);
+  --portfolio-line-strong: var(--border-strong);
+  --portfolio-muted: var(--text-muted);
+  --portfolio-soft: var(--surface-muted);
+  --portfolio-accent: var(--primary);
+  --portfolio-accent-soft: var(--primary-soft);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 0.25rem 0 0.35rem;
+}
+
+.headerCopy { min-width: 0; }
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--portfolio-accent);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.header h1 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.15rem); letter-spacing: -0.03em; }
+.lede { max-width: 70ch; margin: 0.6rem 0 0; color: var(--portfolio-muted); }
+
+.truthKey {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 3px;
+  min-width: 175px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--portfolio-accent);
+  background: var(--portfolio-accent-soft);
+  color: var(--portfolio-muted);
+  font-size: 0.75rem;
+}
+
+.truthKey strong { color: var(--text); font-size: 1rem; }
+
+.main { display: grid; gap: 18px; min-width: 0; }
+
+.collectionSection,
+.createSection { padding: 0; }
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.sectionHeader h2 { margin: 0; font-size: 1.1rem; }
+.sectionHeader .muted { max-width: 44ch; margin: 0; text-align: right; }
+.muted { color: var(--portfolio-muted); font-size: 0.82rem; }
+
+.tableWrap {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.tableWrap:focus-visible { outline: 3px solid var(--portfolio-accent); outline-offset: -3px; }
+
+.table {
+  min-width: 760px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption { padding: 12px 18px 2px; color: var(--portfolio-muted); text-align: left; }
+
+.table th,
+.table td { padding: 12px 14px; border-bottom: 1px solid var(--portfolio-line); text-align: left; vertical-align: top; }
+
+.table th {
+  background: var(--portfolio-soft);
+  color: var(--portfolio-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.table tbody tr:hover { background: var(--portfolio-soft); }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table th:first-child { width: 28%; }
+.table td:first-child a { font-weight: 750; }
+
+.lifecycleState,
+.cellHint {
+  display: block;
+}
+
+.lifecycleState {
+  color: var(--text);
+  font-weight: 720;
+  text-transform: capitalize;
+}
+
+.cellHint { margin-top: 3px; color: var(--portfolio-muted); font-size: 0.74rem; line-height: 1.35; }
+.openLink { min-height: 36px; padding: 0.35rem 0.6rem; border: 1px solid var(--portfolio-line-strong); background: var(--surface); }
+.openLink:hover { background: var(--portfolio-accent-soft); text-decoration: none; }
+
+.createBody { padding: 0 18px 18px; }
+.createBody :global(.action-card--row) { margin: 0; border-top: 0; }
+
+@media (max-width: 760px) {
+  .header { display: block; }
+  .truthKey { width: fit-content; margin-top: 14px; }
+  .sectionHeader { display: grid; align-items: start; gap: 8px; }
+  .sectionHeader .muted { max-width: 60ch; text-align: left; }
+}
+
+@media (max-width: 680px) {
+  .table { min-width: 0; }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td,
+  .table th { display: block; }
+  .table tr { padding: 12px 18px; border-bottom: 1px solid var(--portfolio-line); }
+  .table tbody tr:last-child { border-bottom: 0; }
+  .table td,
+  .table th { display: grid; grid-template-columns: minmax(7rem, 35%) minmax(0, 1fr); gap: 10px; padding: 4px 0; border: 0; }
+  .table td::before,
+  .table th::before { content: attr(data-label); color: var(--portfolio-muted); font-size: 0.68rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; }
+  .table caption { padding: 12px 18px 4px; }
+  .createBody { padding: 0 14px 14px; }
+}
+
+@media (max-width: 420px) {
+  .table td,
+  .table th { grid-template-columns: 1fr; gap: 2px; padding: 5px 0; }
+  .table td::before,
+  .table th::before { font-size: 0.65rem; }
+}

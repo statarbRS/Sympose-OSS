@@ -1,0 +1,61 @@
+import type { DatabaseSync } from "node:sqlite";
+
+/** Remove the additive V21 surface before reconstructing an exact historical schema fixture. */
+export function dropV21ProductionConnectorSchema(db: Pick<DatabaseSync, "exec">): void {
+  db.exec(`
+    DROP TRIGGER IF EXISTS trg_account_credentials_workspace_guard;
+    DROP TRIGGER IF EXISTS trg_account_credentials_update_guard;
+    DROP TRIGGER IF EXISTS trg_connector_runs_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_runs_binding_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_runs_update_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_runs_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_attempts_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_attempts_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_attempts_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_preview_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_preview_update_guard;
+    DROP TRIGGER IF EXISTS trg_connector_preview_no_delete;
+    DROP TRIGGER IF EXISTS trg_person_projection_decisions_scope_guard;
+    DROP TRIGGER IF EXISTS trg_person_projection_decisions_immutable;
+    DROP TRIGGER IF EXISTS trg_person_projection_decisions_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_import_success_integrity;
+    DROP TRIGGER IF EXISTS trg_connector_export_authority_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_export_authority_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_export_authority_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_export_manifest_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_export_manifest_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_export_manifest_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_export_decision_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_export_decision_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_export_decision_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_export_scope_guard;
+    DROP TRIGGER IF EXISTS trg_connector_export_immutable;
+    DROP TRIGGER IF EXISTS trg_connector_export_no_delete;
+    DROP TRIGGER IF EXISTS trg_connector_export_success_integrity;
+    DROP TRIGGER IF EXISTS trg_connector_export_denial_integrity;
+    DROP INDEX IF EXISTS idx_account_credentials_workspace;
+    DROP INDEX IF EXISTS idx_auth_attempt_leases_expiry;
+    DROP INDEX IF EXISTS idx_auth_login_guards_retention;
+    DROP INDEX IF EXISTS idx_connector_runs_workspace;
+    DROP INDEX IF EXISTS idx_connector_attempts_run;
+    DROP INDEX IF EXISTS idx_connector_preview_run;
+    DROP INDEX IF EXISTS idx_connector_preview_email;
+    DROP INDEX IF EXISTS idx_person_projection_decisions_person;
+    DROP INDEX IF EXISTS idx_connector_export_authority_current;
+    DROP INDEX IF EXISTS idx_connector_export_decision_run;
+    DROP INDEX IF EXISTS idx_connector_export_run;
+    DROP TABLE IF EXISTS connector_export_receipts;
+    DROP TABLE IF EXISTS connector_export_decisions;
+    DROP TABLE IF EXISTS connector_export_authority_versions;
+    DROP TABLE IF EXISTS connector_export_manifests;
+    DROP TABLE IF EXISTS person_projection_decisions;
+    DROP TABLE IF EXISTS connector_import_preview_rows;
+    DROP TABLE IF EXISTS connector_run_attempts;
+    DROP TABLE IF EXISTS connector_runs;
+    DROP TABLE IF EXISTS auth_attempt_leases;
+    DROP TABLE IF EXISTS auth_global_guards;
+    DROP TABLE IF EXISTS auth_login_guards;
+    DROP TABLE IF EXISTS account_credentials;
+    DROP TABLE IF EXISTS production_bootstrap_challenges;
+  `);
+}

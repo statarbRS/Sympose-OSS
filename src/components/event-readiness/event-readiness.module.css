@@ -1,0 +1,301 @@
+.commandCenter {
+  display: grid;
+  gap: 1rem;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.8fr);
+  gap: 1rem 2rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--accent-soft), transparent 44%),
+    var(--surface);
+}
+
+.summaryCopy h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: -0.025em;
+}
+
+.summaryCopy > p:not(.kicker, .eventContext) {
+  max-width: 68ch;
+  margin: 0.55rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.kicker,
+.cardEyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent-strong);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.eventContext {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0 0;
+}
+
+.eventContext span {
+  padding: 0.25rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.summaryMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  align-self: start;
+  margin: 0;
+}
+
+.summaryMetrics div {
+  min-width: 0;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.summaryMetrics dt,
+.metricGrid dt {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.summaryMetrics dd {
+  margin: 0.2rem 0 0;
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.boundaryNote {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.queueHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 0.15rem 0 0.2rem;
+}
+
+.queueHeading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.queueHeading > p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.areaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.areaCard {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.areaCard article {
+  display: grid;
+  gap: 0.8rem;
+  height: 100%;
+  padding: 1rem;
+}
+
+.statusReady {
+  border-top-color: var(--success-border);
+  background: color-mix(in srgb, var(--surface) 94%, var(--success-bg));
+}
+.statusAttention { border-top-color: var(--warning-border); }
+.statusBlocked { border-top-color: var(--error-border); }
+.statusUnavailable { border-top-color: var(--neutral-border); }
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+}
+
+.statusLabel {
+  flex: none;
+  max-width: 10rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.statusReady .statusLabel { background: var(--success-bg); color: var(--success-text); }
+.statusAttention .statusLabel { background: var(--warning-bg); color: var(--warning-text); }
+.statusBlocked .statusLabel { background: var(--error-bg); color: var(--error-text); }
+.statusUnavailable .statusLabel { background: var(--neutral-bg); color: var(--neutral-text); }
+
+.areaSummary {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.evidenceLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.evidenceLabel span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.evidenceComplete { color: var(--success-text); }
+.evidencePartial { color: var(--warning-text); }
+.evidenceUnavailable { color: var(--neutral-text); }
+.evidenceUnavailable span { background: transparent; }
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.metricGrid div {
+  min-width: 0;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+
+.metricGrid dd {
+  margin: 0.2rem 0 0;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.findings {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.findings li {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.findings .findingNote { border-left-color: var(--info-border); }
+.findings .findingAttention { border-left-color: var(--warning-border); }
+.findings .findingBlocked { border-left-color: var(--error-border); }
+.findings .findingUnavailable { border-left-color: var(--neutral-border); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  align-self: end;
+  padding-top: 0.1rem;
+}
+
+.actions a {
+  min-height: var(--density-control-height);
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-underline-offset: 0.2em;
+}
+
+.actions a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (max-width: 900px) {
+  .summary { grid-template-columns: 1fr; }
+  .areaGrid { grid-template-columns: 1fr; }
+  .queueHeading { align-items: flex-start; flex-direction: column; }
+  .queueHeading > p { text-align: left; }
+}
+
+@media (max-width: 520px) {
+  .summary { padding: 1rem; }
+  .summaryMetrics { grid-template-columns: 1fr 1fr; }
+  .metricGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cardHeader { display: grid; }
+  .statusLabel { max-width: none; justify-self: start; }
+}

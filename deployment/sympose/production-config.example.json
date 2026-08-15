@@ -1,0 +1,22 @@
+{
+  "bootstrap": {
+    "issuedAt": "2026-08-15T00:00:00.000Z",
+    "tokenFile": "/var/lib/sympose-production/bootstrap/bootstrap-token"
+  },
+  "dataClassification": "ORGANIZER_PRIVATE",
+  "host": "127.0.0.1",
+  "instanceId": "sympose-production",
+  "port": 3000,
+  "releaseSha": "0000000000000000000000000000000000000000",
+  "runtimeProfile": "production",
+  "schema": "sympose-production-config/v1",
+  "state": {
+    "artifacts": "/var/lib/sympose-production/state/artifacts",
+    "database": "/var/lib/sympose-production/state/database/sympose.db",
+    "logs": "/var/lib/sympose-production/state/logs",
+    "receipts": "/var/lib/sympose-production/state/receipts",
+    "root": "/var/lib/sympose-production/state",
+    "runtime": "/var/lib/sympose-production/state/runtime",
+    "temporary": "/var/lib/sympose-production/state/tmp"
+  }
+}

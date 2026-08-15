@@ -1,0 +1,36 @@
+.presentationBoundary {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.referenceNote {
+  max-width: 78ch;
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+.presentationBoundary :global([data-testid="selected-proposal-detail"] > header p code) {
+  display: inline-block;
+  max-inline-size: 22ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  direction: ltr;
+  user-select: all;
+}
+
+.presentationBoundary :global([data-testid="selected-proposal-detail"] > header p code::before) {
+  content: "Proposal ref ";
+}
+
+@media (max-width: 640px) {
+  .presentationBoundary :global([data-testid="selected-proposal-detail"] > header p code) {
+    max-inline-size: 18ch;
+  }
+}

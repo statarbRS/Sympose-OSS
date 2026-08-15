@@ -1,0 +1,35 @@
+[Unit]
+Description=Optional Cloudflare named tunnel for the Sympose evaluator
+Documentation=file://@REPOSITORY_ROOT@/docs/guides/production-evaluator-release.md
+Requires=sympose-evaluator.service
+After=network-online.target sympose-evaluator.service
+Wants=network-online.target
+ConditionPathExists=@CLOUDFLARED_CONFIG@
+
+[Service]
+Type=simple
+User=@CLOUDFLARED_USER@
+Group=@CLOUDFLARED_GROUP@
+UMask=0077
+ExecStart=@CLOUDFLARED_BINARY@ tunnel --no-autoupdate --config @CLOUDFLARED_CONFIG@ run @TUNNEL_ID@
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=30s
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictSUIDSGID=true
+LockPersonality=true
+ReadOnlyPaths=@CLOUDFLARED_CONFIG@ @CLOUDFLARED_CREDENTIAL_FILE@
+
+[Install]
+WantedBy=multi-user.target

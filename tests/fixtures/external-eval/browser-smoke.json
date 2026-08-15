@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "startPath": "/",
+  "login": {
+    "workspaceName": "Acme Events",
+    "organizerDisplayName": "Acme Organizer",
+    "workspaceSlug": "acme"
+  },
+  "event": {
+    "name": "External eval smoke event",
+    "programUnitName": "External eval smoke unit",
+    "capacity": "6"
+  },
+  "stages": [
+    {
+      "id": "root",
+      "expectedText": [
+        "Choose an organizer workspace",
+        "Local synthetic fixture"
+      ]
+    },
+    {
+      "id": "import",
+      "button": "Import fixture evidence",
+      "expectedText": "Canonical people resolved:"
+    },
+    {
+      "id": "snapshot",
+      "button": "Freeze snapshot",
+      "expectedText": "Snapshot"
+    },
+    {
+      "id": "event",
+      "button": "Create event",
+      "expectedText": "External eval smoke event"
+    },
+    {
+      "id": "compile",
+      "button": "Compile plan",
+      "expectedText": "Plan v"
+    },
+    {
+      "id": "approve",
+      "button": "Approve candidate plan",
+      "expectedText": "Approved"
+    },
+    {
+      "id": "plan-review",
+      "expectedText": "Frozen compiler receipt"
+    }
+  ]
+}

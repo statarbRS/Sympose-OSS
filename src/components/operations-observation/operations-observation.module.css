@@ -1,0 +1,237 @@
+.surface,
+.recording,
+.history,
+.heading > div,
+.targets li > div,
+.identity > div,
+.truthRow > div,
+.correctionForm {
+  display: grid;
+  gap: .35rem;
+}
+
+.surface {
+  gap: 1rem;
+}
+
+.recording,
+.history {
+  gap: .75rem;
+}
+
+.heading {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.heading h3,
+.heading p,
+.truthRow p,
+.empty,
+.result {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.heading p,
+.targets span,
+.targets small,
+.identity span,
+.truthRow time,
+.truthRow small,
+.correctionForm small,
+.empty {
+  color: var(--text-muted);
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.result {
+  padding: .75rem .9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: .35rem;
+}
+
+.result[data-tone="success"] {
+  border-color: var(--success-border, var(--border-strong));
+  background: var(--success-bg, var(--surface));
+}
+
+.result[data-tone="error"] {
+  border-color: var(--denial-border);
+  background: var(--denial-bg);
+  color: var(--denial-text);
+}
+
+.targets,
+.lineages {
+  display: grid;
+  gap: .65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.targets {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.targets li,
+.lineages > li {
+  min-width: 0;
+  padding: .75rem;
+  border: 1px solid var(--border);
+  border-radius: .4rem;
+  background: var(--surface);
+}
+
+.targets li,
+.identity,
+.truthRow,
+.correctionForm > div {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.targets li > div,
+.identity > div,
+.truthRow > div,
+.correctionForm small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.targets button,
+.correctionForm button {
+  min-height: 44px;
+  padding: .55rem .8rem;
+  border: 1px solid var(--border-strong);
+  border-radius: .35rem;
+  background: var(--text);
+  color: var(--surface);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+}
+
+.recordForm {
+  display: grid;
+  gap: .35rem;
+  min-width: min(100%, 18rem);
+}
+
+.recordForm label {
+  font-size: .78rem;
+  font-weight: 750;
+}
+
+.recordForm input {
+  min-height: 40px;
+  padding: .45rem .55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: .35rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: .82rem;
+}
+
+.lineages > li {
+  display: grid;
+  gap: .6rem;
+}
+
+.identity {
+  padding-bottom: .55rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.truthRow {
+  align-items: start;
+  padding: .65rem;
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-subtle, var(--surface));
+}
+
+.truthRow[data-kind="correction"] {
+  border-left-color: var(--accent);
+}
+
+.meaning {
+  font-weight: 800;
+}
+
+.state {
+  flex: none;
+  padding: .18rem .45rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.state[data-state="current"] {
+  border-color: var(--success-border, var(--border-strong));
+}
+
+.state[data-state="superseded"] {
+  color: var(--text-muted);
+}
+
+.correctionForm {
+  padding-top: .35rem;
+}
+
+.correctionForm label {
+  font-weight: 750;
+}
+
+.correctionForm textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  padding: .6rem;
+  border: 1px solid var(--border-strong);
+  border-radius: .35rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+@media (max-width: 760px) {
+  .heading,
+  .targets li,
+  .truthRow,
+  .correctionForm > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .targets {
+    grid-template-columns: 1fr;
+  }
+
+  .targets button,
+  .correctionForm button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .targets button,
+  .correctionForm button {
+    transition: none;
+  }
+}

@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/cache/
+.yarn/install-state.gz
+
+# JavaScript and TypeScript build output
+.next/
+next-env.d.ts
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+.turbo/
+.vercel/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Trigger.dev and local tooling
+.trigger/
+.cache/
+.tmp/
+tmp/
+
+# Local databases and generated artifacts
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+artifacts/
+playwright-report/
+test-results/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

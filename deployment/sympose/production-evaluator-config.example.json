@@ -1,0 +1,18 @@
+{
+  "dataClassification": "PUBLIC_SYNTHETIC",
+  "host": "127.0.0.1",
+  "instanceId": "sympose-evaluator",
+  "port": 3000,
+  "releaseSha": "0000000000000000000000000000000000000000",
+  "runtimeProfile": "synthetic-evaluator",
+  "schema": "sympose-production-evaluator-config/v1",
+  "state": {
+    "artifacts": "/var/lib/sympose-evaluator/state/artifacts",
+    "database": "/var/lib/sympose-evaluator/state/database/sympose.db",
+    "logs": "/var/lib/sympose-evaluator/state/logs",
+    "receipts": "/var/lib/sympose-evaluator/state/receipts",
+    "root": "/var/lib/sympose-evaluator/state",
+    "runtime": "/var/lib/sympose-evaluator/state/runtime",
+    "temporary": "/var/lib/sympose-evaluator/state/tmp"
+  }
+}

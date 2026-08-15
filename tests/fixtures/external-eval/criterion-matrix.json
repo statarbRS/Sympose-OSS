@@ -1,0 +1,919 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "read-only evaluator input /tmp/sympose-eval-rubric.ahdlcd",
+    "commit": "2b0f7956ab0c6f4868d41356e495b3a225badaab",
+    "requiredAreas": [
+      "call-for-papers",
+      "abstract-management",
+      "speaker-management",
+      "content-management",
+      "ai-agenda",
+      "public-widgets"
+    ],
+    "deferredArea": "speaker-crm"
+  },
+  "harnessContract": {
+    "startPath": "/",
+    "browserOnly": true,
+    "allowedData": "REPOSITORY_PRIVATE synthetic fixtures only",
+    "forbiddenAccess": [
+      "internal service imports",
+      "raw SQL",
+      "cookie injection",
+      "hidden tokens",
+      "remote database",
+      "provider or network mutation"
+    ],
+    "statusMeaning": {
+      "pending": "The criterion has an explicit route/evidence contract but the current local slice does not claim support.",
+      "smoke": "A staged browser smoke proves the local route and evidence checkpoint without claiming the full criterion."
+    }
+  },
+  "criteria": [
+    {
+      "id": "CFP-01",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Custom form types, required flags, public rendering, and validation.",
+      "routeContract": "Start at /; use visible organizer CFP/form-builder controls, then the logged-out public form.",
+      "checkpoint": "Builder shows field types and required state; public form shows options; empty required submission shows an error.",
+      "evidence": ["builder field/type/required state", "public form and validation error"]
+    },
+    {
+      "id": "CFP-02",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Conditional form field toggles from a visible answer.",
+      "routeContract": "Start at /; follow visible form-builder and public-form controls; do not call form internals.",
+      "checkpoint": "Dependent field is visible for the controlling value and hidden for the alternate value.",
+      "evidence": ["show-when configuration", "both public-form visibility states"]
+    },
+    {
+      "id": "CFP-03",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Anonymous branded CFP portal with deadline and selectable options.",
+      "routeContract": "Start at /; obtain the public URL through visible UI; open it in a fresh logged-out context.",
+      "checkpoint": "Event name, deadline, tracks, and formats are rendered without organizer access.",
+      "evidence": ["logged-out portal URL and branding", "opened option controls"]
+    },
+    {
+      "id": "CFP-04",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Closed submission window blocks new public submissions.",
+      "routeContract": "Use visible organizer settings to close the call, then reopen its public URL logged out.",
+      "checkpoint": "Closed state is visible and no new-submission action remains.",
+      "evidence": ["saved past close setting", "logged-out closed portal"]
+    },
+    {
+      "id": "CFP-05",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Speaker signup, proposal submission, confirmation, and own dashboard status.",
+      "routeContract": "Start at the public URL from visible UI; use the speaker-facing signup and submission controls.",
+      "checkpoint": "A proposal is submitted, confirmation is rendered, and the speaker dashboard lists its status.",
+      "evidence": ["filled submission and confirmation", "speaker dashboard row/status"]
+    },
+    {
+      "id": "CFP-06",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Submitted fields round-trip to organizer views.",
+      "routeContract": "Use the visible speaker submission flow, then switch identities through the visible sign-out/login UI.",
+      "checkpoint": "Organizer list/detail preserves title, abstract, options, and custom values.",
+      "evidence": ["speaker-submitted values", "organizer list/detail values"]
+    },
+    {
+      "id": "CFP-07",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "In-progress proposal can be saved and resumed.",
+      "routeContract": "Use only the visible draft/save controls in the public or speaker form.",
+      "checkpoint": "A title-only draft has a visible draft state and resumes with saved content.",
+      "evidence": ["saved draft indicator", "resumed draft content"]
+    },
+    {
+      "id": "CFP-08",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Submission creates confirmation email or visible local outbox evidence.",
+      "routeContract": "Submit through the visible public form; inspect only an in-app outbox if the UI exposes one.",
+      "checkpoint": "Recipient and submitted title appear in a rendered confirmation/outbox record.",
+      "evidence": ["submission confirmation", "email/outbox recipient and title"]
+    },
+    {
+      "id": "CFP-09",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Open CFP edits persist and reach organizer view.",
+      "routeContract": "Use speaker dashboard/edit controls, reload, then use visible organizer detail controls.",
+      "checkpoint": "Edited abstract survives reload and matches organizer-side content.",
+      "evidence": ["speaker edited submission after reload", "organizer detail with edited text"]
+    },
+    {
+      "id": "CFP-10",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Reviewer provisioning separates reviewer surface from organizer capabilities.",
+      "routeContract": "Provision through visible organizer controls and sign in through the public root; no token guessing.",
+      "checkpoint": "Reviewer lands on a reviewer surface with no organizer navigation.",
+      "evidence": ["visible reviewer provisioning state", "reviewer surface/navigation"]
+    },
+    {
+      "id": "CFP-11",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Reviewer rating/comment persists and completion updates.",
+      "routeContract": "Use the visible assigned-review route in a reviewer browser context, then inspect organizer view.",
+      "checkpoint": "Rating and comment are stored; reviewer completion and organizer visibility agree.",
+      "evidence": ["filled reviewer review", "completed queue and organizer record"]
+    },
+    {
+      "id": "CFP-12",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Organizer records distinct accept/reject decisions.",
+      "routeContract": "Use visible organizer submission-list/detail decision controls.",
+      "checkpoint": "Accepted and rejected rows remain distinct after reload.",
+      "evidence": ["decision controls/result", "reloaded organizer list"]
+    },
+    {
+      "id": "CFP-13",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Decision statuses propagate to the speaker dashboard.",
+      "routeContract": "Record decisions visibly, sign out, and use the speaker-facing dashboard.",
+      "checkpoint": "The speaker sees the corresponding accepted/rejected states.",
+      "evidence": ["organizer decision list", "speaker dashboard statuses"]
+    },
+    {
+      "id": "CFP-14",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Decision notifications can be sent or queued with confirmation.",
+      "routeContract": "Use visible organizer notification controls for decided submissions only.",
+      "checkpoint": "UI confirms recipient set and sent/queued result.",
+      "evidence": ["notification compose/confirm", "sent/queued result"]
+    },
+    {
+      "id": "CFP-15",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Accepted proposal becomes a session without re-entry.",
+      "routeContract": "Accept through visible organizer controls, then follow visible agenda/program navigation.",
+      "checkpoint": "Session retains accepted title, speaker, and track.",
+      "evidence": ["accepted proposal metadata", "agenda/session metadata"]
+    },
+    {
+      "id": "CFP-16",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Closed CFP makes speaker submissions read-only.",
+      "routeContract": "Close through visible organizer settings, then open the speaker submission through its dashboard.",
+      "checkpoint": "Edit is absent/blocked and a save cannot change content.",
+      "evidence": ["closed-call state", "speaker read-only/rejected edit"]
+    },
+    {
+      "id": "CFP-17",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Organizer can create and switch between multiple events.",
+      "routeContract": "Search only visible organizer navigation for event list/switcher/create controls.",
+      "checkpoint": "Two event records coexist and each has a reachable event surface.",
+      "evidence": ["event list/switcher with two events", "second event surface"]
+    },
+    {
+      "id": "CFP-18",
+      "area": "call-for-papers",
+      "status": "pending",
+      "summary": "Event-scoped records do not leak between events.",
+      "routeContract": "Use visible event navigation to compare the first and second event surfaces.",
+      "checkpoint": "Second event shows only its own submissions/sessions/speakers.",
+      "evidence": ["first event records", "second event empty/own-record state"]
+    },
+    {
+      "id": "ABS-01",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Independent review rounds with distinct dates and scorecards persist.",
+      "routeContract": "Use visible organizer review-plan controls under the event review surface.",
+      "checkpoint": "Reloaded plan shows two named rounds, dates, and different scorecards.",
+      "evidence": ["round configuration", "reloaded round plan"]
+    },
+    {
+      "id": "ABS-02",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Reviewer pools are scoped per round.",
+      "routeContract": "Use visible round-specific reviewer-pool controls; do not infer scope from URLs.",
+      "checkpoint": "Reviewer in round one is not implicitly in round two.",
+      "evidence": ["round-one pool", "separate round-two pool"]
+    },
+    {
+      "id": "ABS-03",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Scorecard supports numeric, dropdown, and free-text fields.",
+      "routeContract": "Configure visibly, then review the same scorecard in a separate reviewer browser context.",
+      "checkpoint": "All field types render and submitted values reload.",
+      "evidence": ["scorecard editor field types", "stored reviewer values"]
+    },
+    {
+      "id": "ABS-04",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Weighted criteria persist and affect labeled aggregates.",
+      "routeContract": "Use visible scorecard weight controls and visible results/aggregate views.",
+      "checkpoint": "Weight configuration and weighted/unweighted method are explicit after reload.",
+      "evidence": ["weight configuration", "aggregate with method/value"]
+    },
+    {
+      "id": "ABS-05",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Reviewer queue contains exactly assigned submissions.",
+      "routeContract": "Assign visibly, then inspect the reviewer queue in an isolated browser context.",
+      "checkpoint": "Assigned titles appear; unassigned title is absent or denied.",
+      "evidence": ["assignment mapping", "reviewer queue and denied unassigned access"]
+    },
+    {
+      "id": "ABS-06",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Assignment has a cap, filter, or automatic distribution control.",
+      "routeContract": "Use visible assignment tooling and record the exercised operation.",
+      "checkpoint": "At-scale control is visible and changes assignment state without error.",
+      "evidence": ["scale-control configuration", "resulting assignment state"]
+    },
+    {
+      "id": "ABS-07",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Blind reviewer view hides authors while organizer view shows them.",
+      "routeContract": "Enable visible round anonymization; compare reviewer and organizer browser contexts.",
+      "checkpoint": "Author strings are absent from reviewer view and present for organizer.",
+      "evidence": ["blinded reviewer page scan", "organizer author-visible page"]
+    },
+    {
+      "id": "ABS-08",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Reviewer progress counts track assigned and completed work.",
+      "routeContract": "Use visible progress view before and after reviewer submissions.",
+      "checkpoint": "Counts/percentages change to match the recorded review state.",
+      "evidence": ["pre-review progress", "post-review progress"]
+    },
+    {
+      "id": "ABS-09",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Organizer can remind reviewers with outstanding work.",
+      "routeContract": "Select a lagging reviewer through visible progress/reviewer controls.",
+      "checkpoint": "Reminder action reports a sent/queued result.",
+      "evidence": ["lagging reviewer selection", "reminder confirmation"]
+    },
+    {
+      "id": "ABS-10",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Results show aggregates and sort by score in both directions.",
+      "routeContract": "Use visible organizer results table and score sort control.",
+      "checkpoint": "Aggregate values render and row order changes descending/ascending.",
+      "evidence": ["results table with aggregates", "both sorted row orders"]
+    },
+    {
+      "id": "ABS-11",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Co-authors persist with role labels.",
+      "routeContract": "Add co-author through visible submission controls; inspect speaker and organizer views.",
+      "checkpoint": "Co-author name and role survive reload in organizer review/results.",
+      "evidence": ["speaker submission participants", "organizer participants"]
+    },
+    {
+      "id": "ABS-12",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Reviewer can declare conflict or recuse.",
+      "routeContract": "Use visible conflict/recusal control on an assigned review page.",
+      "checkpoint": "Wording and resulting flagged/removed state are rendered.",
+      "evidence": ["conflict control", "post-action queue/detail state"]
+    },
+    {
+      "id": "ABS-13",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "Review results can be exported to a downloadable file.",
+      "routeContract": "Use visible organizer results/reports export controls; do not inspect hidden filesystem paths.",
+      "checkpoint": "Download starts or UI confirms a generated file and filename.",
+      "evidence": ["export control", "download/generated-file confirmation"]
+    },
+    {
+      "id": "ABS-14",
+      "area": "abstract-management",
+      "status": "pending",
+      "summary": "If AI review is claimed, score/rationale and human override are distinguishable.",
+      "routeContract": "Inspect only visible product claims and AI controls; if none exist, record an honest no-AI observation.",
+      "checkpoint": "Claimed AI score/rationale and persisted override are visible, or the no-AI path is explicit.",
+      "evidence": ["visible AI claim/control or no-AI observation", "score/override or deferred result"]
+    },
+    {
+      "id": "SPK-01",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker roster lists identity fields and supports search/filter.",
+      "routeContract": "Use visible organizer event-speakers route and roster controls.",
+      "checkpoint": "Roster renders identities; search/filter narrows and clears.",
+      "evidence": ["roster identity rows", "filtered and restored roster"]
+    },
+    {
+      "id": "SPK-02",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Organizer can add and edit speaker profile fields.",
+      "routeContract": "Use visible organizer add/edit speaker controls.",
+      "checkpoint": "Name, email, bio, title/company, and organizer edit persist after reload.",
+      "evidence": ["saved speaker profile", "reloaded edited profile"]
+    },
+    {
+      "id": "SPK-03",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker CSV import creates or merges roster records.",
+      "routeContract": "Use visible organizer import control and the repository-owned synthetic CSV fixture.",
+      "checkpoint": "Import completes and the new fixture speaker is visible in the roster.",
+      "evidence": ["import completion/mapping", "roster with imported speaker"]
+    },
+    {
+      "id": "SPK-04",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker workflow status changes, persists, and filters.",
+      "routeContract": "Use visible roster status control and status filter.",
+      "checkpoint": "Changed status survives reload and filter membership agrees.",
+      "evidence": ["status change", "reloaded filtered roster"]
+    },
+    {
+      "id": "SPK-05",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "General tasks have due dates and multiple speaker assignees.",
+      "routeContract": "Use visible organizer task controls linked to canonical speaker records.",
+      "checkpoint": "Three fixture tasks render with due dates and intended assignees.",
+      "evidence": ["task editor/assignees", "task list with dates"]
+    },
+    {
+      "id": "SPK-06",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Organizer can invite/onboard a speaker.",
+      "routeContract": "Use visible per-speaker or bulk invitation controls.",
+      "checkpoint": "UI confirms an invitation or onboarding message was sent/queued.",
+      "evidence": ["invite control/recipient", "send confirmation or log"]
+    },
+    {
+      "id": "SPK-07",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker portal is personalized and own-content scoped.",
+      "routeContract": "Enter through visible speaker login/invite flow and inspect the portal as that speaker.",
+      "checkpoint": "Own identity/content is present; another speaker's records and admin navigation are absent.",
+      "evidence": ["speaker portal identity/content", "cross-speaker/admin absence observation"]
+    },
+    {
+      "id": "SPK-08",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker portal profile edits round-trip bio, socials, and headshot.",
+      "routeContract": "Use visible speaker profile edit/upload controls, then visible organizer profile view.",
+      "checkpoint": "Sentinel bio/social/headshot persist and appear to organizer.",
+      "evidence": ["speaker portal saved profile", "organizer profile rendering"]
+    },
+    {
+      "id": "SPK-09",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Speaker task list shows deadlines and persistent completion.",
+      "routeContract": "Use visible speaker tasks portal controls and reload after completion.",
+      "checkpoint": "Completed tasks remain complete while untouched task remains incomplete.",
+      "evidence": ["initial task list/deadlines", "reloaded completion state"]
+    },
+    {
+      "id": "SPK-10",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Organizer can view/download speaker-uploaded file metadata.",
+      "routeContract": "Upload through visible speaker portal, then use visible organizer file/profile controls.",
+      "checkpoint": "Filename and uploader/time metadata render; view/download responds.",
+      "evidence": ["speaker upload record", "organizer metadata/download control"]
+    },
+    {
+      "id": "SPK-11",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Session assignment appears for organizer and speaker.",
+      "routeContract": "Link visibly, then inspect both organizer record and speaker portal.",
+      "checkpoint": "Same session title appears in both surfaces.",
+      "evidence": ["organizer speaker/session link", "speaker portal session"]
+    },
+    {
+      "id": "SPK-12",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Organizer progress view reflects per-speaker task completion.",
+      "routeContract": "Complete tasks visibly as speaker, then return to organizer progress view.",
+      "checkpoint": "Per-speaker completion state changes and optional filter narrows correctly.",
+      "evidence": ["speaker completion result", "organizer progress/filter result"]
+    },
+    {
+      "id": "SPK-13",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Organizer can send a logged bulk email to selected speakers.",
+      "routeContract": "Select visible speaker rows and use visible communication controls.",
+      "checkpoint": "Composer/send result identifies selected recipients and logs the send.",
+      "evidence": ["selected recipient set/composer", "sent confirmation/history"]
+    },
+    {
+      "id": "SPK-14",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Email templates resolve merge fields per recipient.",
+      "routeContract": "Use visible template/composer preview controls; do not inspect provider traffic.",
+      "checkpoint": "Preview or rendered log shows recipient-specific merge values.",
+      "evidence": ["template merge fields", "personalized preview/log"]
+    },
+    {
+      "id": "SPK-15",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Travel/logistics custom fields persist on a speaker.",
+      "routeContract": "Use visible organizer or speaker profile field controls.",
+      "checkpoint": "A logistics value survives save and reload.",
+      "evidence": ["field entry", "reloaded profile value"]
+    },
+    {
+      "id": "SPK-16",
+      "area": "speaker-management",
+      "status": "pending",
+      "summary": "Incomplete-task reminders are visible and triggerable.",
+      "routeContract": "Use visible organizer task/reminder controls against speakers with incomplete work.",
+      "checkpoint": "Reminder recipient and sent/queued result are rendered.",
+      "evidence": ["incomplete-task selection", "reminder confirmation/log"]
+    },
+    {
+      "id": "CNT-01",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Organizer creates a file-request task with instructions and due date.",
+      "routeContract": "Use visible organizer content/task controls linked to speakers.",
+      "checkpoint": "File-request task renders with instruction, due date, and assignees.",
+      "evidence": ["file-request editor", "saved task row"]
+    },
+    {
+      "id": "CNT-02",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Speaker uploads a file against an assigned task/session.",
+      "routeContract": "Use visible speaker task portal upload control.",
+      "checkpoint": "Upload completes and is attached to the task/session.",
+      "evidence": ["upload constraints/form", "task with uploaded file"]
+    },
+    {
+      "id": "CNT-03",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Speaker content scope excludes organizer/admin views.",
+      "routeContract": "Use visible speaker portal entry and navigation only; verify organizer route is unavailable.",
+      "checkpoint": "Speaker sees own tasks/sessions and no admin capabilities.",
+      "evidence": ["speaker-scoped portal", "blocked/absent organizer surface"]
+    },
+    {
+      "id": "CNT-04",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Re-upload creates a visible new file version.",
+      "routeContract": "Use visible task upload twice with repository-owned synthetic files.",
+      "checkpoint": "Latest version is marked while previous version remains accessible.",
+      "evidence": ["first upload/version", "second upload/version history"]
+    },
+    {
+      "id": "CNT-05",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "File comments persist with author and timestamp across roles.",
+      "routeContract": "Add comments through visible file controls, then inspect from other authorized role.",
+      "checkpoint": "Comment author/time and text render after reload.",
+      "evidence": ["comment composer/result", "cross-role reloaded comment"]
+    },
+    {
+      "id": "CNT-06",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Upload UI communicates accepted types or size limits.",
+      "routeContract": "Open the visible speaker upload control.",
+      "checkpoint": "File constraints are rendered at the point of upload.",
+      "evidence": ["upload control", "visible type/size guidance"]
+    },
+    {
+      "id": "CNT-07",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Deliverables dashboard tracks per-speaker/task state with filters.",
+      "routeContract": "Use visible organizer deliverables dashboard and filter controls.",
+      "checkpoint": "Upload changes matching speaker/task status and filtered results.",
+      "evidence": ["dashboard baseline", "filtered post-upload state"]
+    },
+    {
+      "id": "CNT-08",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Organizer sends bulk reminders for outstanding deliverables.",
+      "routeContract": "Select visible outstanding tasks/speakers and use reminder action.",
+      "checkpoint": "Send result reports affected recipients.",
+      "evidence": ["outstanding-task selection", "bulk reminder confirmation"]
+    },
+    {
+      "id": "CNT-09",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Central admin edits session title and abstract.",
+      "routeContract": "Use visible organizer session/content editor.",
+      "checkpoint": "Title and abstract persist after reload.",
+      "evidence": ["editor before save", "reloaded session content"]
+    },
+    {
+      "id": "CNT-10",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Admin edits speaker bio and headshot.",
+      "routeContract": "Use visible organizer speaker profile editor and upload control.",
+      "checkpoint": "Bio/headshot survive reload.",
+      "evidence": ["admin profile edit", "reloaded profile"]
+    },
+    {
+      "id": "CNT-11",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Content edits have attributable history and restore.",
+      "routeContract": "Edit visibly, open visible history, and use visible restore control if available.",
+      "checkpoint": "Prior version, editor/time, and restored value are rendered.",
+      "evidence": ["history with attribution", "restored prior content"]
+    },
+    {
+      "id": "CNT-12",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Approval status gates public agenda visibility.",
+      "routeContract": "Set visible session approval state, then inspect visible public agenda surface.",
+      "checkpoint": "Approved session is shown; unapproved session is excluded.",
+      "evidence": ["admin approval state", "public agenda inclusion/exclusion"]
+    },
+    {
+      "id": "CNT-13",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Central files library shows session/speaker metadata and versions.",
+      "routeContract": "Use visible organizer files library and optional session file tab.",
+      "checkpoint": "Uploaded file metadata and version count agree across surfaces.",
+      "evidence": ["aggregate files row", "session-linked files/version state"]
+    },
+    {
+      "id": "CNT-14",
+      "area": "content-management",
+      "status": "pending",
+      "summary": "Multi-select export creates a latest-version bulk download.",
+      "routeContract": "Use visible organizer file/session selection and export controls.",
+      "checkpoint": "ZIP/export generation or download is confirmed.",
+      "evidence": ["multi-selection/export action", "generation/download confirmation"]
+    },
+    {
+      "id": "AIA-01",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Multi-day schedule builder has time, room/track, and day navigation.",
+      "routeContract": "Use visible organizer event program/schedule route and day controls.",
+      "checkpoint": "Time dimension and location/track structure render for multiple days.",
+      "evidence": ["schedule builder structure", "changed day view"]
+    },
+    {
+      "id": "AIA-02",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Organizer-created rooms and tracks are usable in the builder.",
+      "routeContract": "Create through visible organizer room/track controls, then return to schedule.",
+      "checkpoint": "New room/track appears as an assignable/displayed option.",
+      "evidence": ["room/track creation result", "builder option availability"]
+    },
+    {
+      "id": "AIA-03",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Session placement into day/time/room persists.",
+      "routeContract": "Use visible schedule placement controls or drag alternative; reload the same route.",
+      "checkpoint": "Placed session remains in the selected slot after reload.",
+      "evidence": ["placement state", "reloaded slot"]
+    },
+    {
+      "id": "AIA-04",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Overlapping sessions for one speaker visibly warn.",
+      "routeContract": "Schedule two sessions visibly with the same speaker at an overlapping time.",
+      "checkpoint": "Warning identifies speaker or conflicting sessions.",
+      "evidence": ["overlapping schedule", "speaker conflict warning"]
+    },
+    {
+      "id": "AIA-05",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Overlapping sessions in one room block or warn.",
+      "routeContract": "Attempt the overlap through visible room/slot controls.",
+      "checkpoint": "Placement is rejected or room conflict is clearly rendered.",
+      "evidence": ["overlap attempt", "blocked/flagged room state"]
+    },
+    {
+      "id": "AIA-06",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Moving a session clears resolved speaker/room conflicts.",
+      "routeContract": "Move visibly to a non-conflicting slot/room and reload.",
+      "checkpoint": "New placement persists and prior warnings clear.",
+      "evidence": ["moved session", "cleared conflict after reload"]
+    },
+    {
+      "id": "AIA-07",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "Publish action hands scheduled data to an attendee-facing surface.",
+      "routeContract": "Use visible organizer publish/go-live control, then follow visible public/attendee link.",
+      "checkpoint": "Publish result and scheduled session are both rendered.",
+      "evidence": ["publish confirmation/status", "attendee-facing scheduled session"]
+    },
+    {
+      "id": "AIA-08",
+      "area": "ai-agenda",
+      "status": "pending",
+      "summary": "One-action assisted placement puts an unscheduled session into a slot.",
+      "routeContract": "Use only a visible auto-schedule/assist control in the builder.",
+      "checkpoint": "Previously unscheduled session gains a visible slot.",
+      "evidence": ["assist control", "post-assist placement"]
+    },
+    {
+      "id": "EMB-01",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Sessions list cards show core session metadata and expandable description.",
+      "routeContract": "Open a non-admin public/attendee widget surface reached through visible UI.",
+      "checkpoint": "At least three cards render title, description, time, room, speaker, format, and track.",
+      "evidence": ["sessions cards", "expanded description/card metadata"]
+    },
+    {
+      "id": "EMB-02",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Sessions list searches by title and speaker.",
+      "routeContract": "Use visible widget search input on the attendee-facing surface.",
+      "checkpoint": "Title and surname searches narrow visible cards and result count.",
+      "evidence": ["title search result", "speaker search result"]
+    },
+    {
+      "id": "EMB-03",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Sessions list has a track filter and narrowing behavior.",
+      "routeContract": "Use visible widget filter controls; do not query widget internals.",
+      "checkpoint": "Selected facet leaves only matching cards and can clear.",
+      "evidence": ["filter control/options", "filtered and cleared cards"]
+    },
+    {
+      "id": "EMB-04",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Speaker list directory renders photo, identity, title, and company.",
+      "routeContract": "Open visible non-admin speaker-list widget route.",
+      "checkpoint": "Directory entries render metadata and surname ordering is observable.",
+      "evidence": ["speaker directory entries", "ordering and fallback observation"]
+    },
+    {
+      "id": "EMB-05",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Speaker directory search and detail show bio and sessions.",
+      "routeContract": "Search visibly, open a speaker entry, and use visible back/close control.",
+      "checkpoint": "Detail includes bio and session metadata; search narrows directory.",
+      "evidence": ["filtered speaker directory", "speaker detail/session list"]
+    },
+    {
+      "id": "EMB-06",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Agenda widget is structured by day/time/location.",
+      "routeContract": "Open visible attendee-facing agenda surface after publish if required.",
+      "checkpoint": "Time/room structure and session block metadata render.",
+      "evidence": ["agenda grid/list structure", "sample session block"]
+    },
+    {
+      "id": "EMB-07",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Agenda day navigation changes label and sessions.",
+      "routeContract": "Use visible day tabs/chevrons/date control on the agenda.",
+      "checkpoint": "Second day visibly differs in label and rendered content.",
+      "evidence": ["first day agenda", "second day agenda"]
+    },
+    {
+      "id": "EMB-08",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Agenda block detail shows full session fields and returns.",
+      "routeContract": "Open a visible agenda block and use visible back/close control.",
+      "checkpoint": "Detail shows time range, room, description, format, and track.",
+      "evidence": ["agenda block", "detail and restored agenda"]
+    },
+    {
+      "id": "EMB-09",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Schedule itinerary lists complete chronological session cards.",
+      "routeContract": "Open visible attendee itinerary and day sections/tabs.",
+      "checkpoint": "Cards show track, title, description, time, room, and all speakers in order.",
+      "evidence": ["itinerary day/order", "complete sample card"]
+    },
+    {
+      "id": "EMB-10",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Attendee can build a personal schedule and remove one item.",
+      "routeContract": "Use visible star/add controls and personal-schedule view.",
+      "checkpoint": "Exactly chosen sessions appear; removing one updates the list.",
+      "evidence": ["added sessions", "personal schedule after removal"]
+    },
+    {
+      "id": "EMB-11",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Personal schedule survives reload and offers export/calendar.",
+      "routeContract": "Reload the attendee-facing itinerary/personal view and use visible export/calendar control.",
+      "checkpoint": "Selection persists and export action confirms.",
+      "evidence": ["reloaded personal schedule", "export/calendar result"]
+    },
+    {
+      "id": "EMB-12",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Speaker gallery has photo cards, search, ordering, and fallbacks.",
+      "routeContract": "Open visible non-admin gallery surface and use its search input.",
+      "checkpoint": "Photo grid renders metadata and handles missing photo/title without breaking.",
+      "evidence": ["gallery cards/fallback", "gallery search result"]
+    },
+    {
+      "id": "EMB-13",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Gallery detail shows speaker profile and sessions, then restores grid.",
+      "routeContract": "Open a visible gallery card and close/back through rendered controls.",
+      "checkpoint": "Detail includes photo, identity, bio, company, and session list.",
+      "evidence": ["gallery card", "speaker detail and restored grid"]
+    },
+    {
+      "id": "EMB-14",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "All implemented widget surfaces are available to non-admin viewers.",
+      "routeContract": "Open each visible public/attendee/embed surface in a non-admin browser context.",
+      "checkpoint": "Five surfaces render populated content without organizer rights.",
+      "evidence": ["surface route inventory", "non-admin populated renders"]
+    },
+    {
+      "id": "EMB-15",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Organizer can configure and retrieve saved widget embed code/feed.",
+      "routeContract": "Use visible organizer embed/widget controls and saved-embed list.",
+      "checkpoint": "Widget configuration and retrievable snippet/feed URL are rendered.",
+      "evidence": ["embed configuration", "saved embed/snippet"]
+    },
+    {
+      "id": "EMB-16",
+      "area": "public-widgets",
+      "status": "pending",
+      "summary": "Widget data stays consistent with organizer source across surfaces.",
+      "routeContract": "Compare visible organizer record with at least two attendee-facing widget surfaces.",
+      "checkpoint": "Sample title, time, room, track, and speaker fields match.",
+      "evidence": ["organizer source sample", "cross-surface comparison"]
+    }
+  ],
+  "deferredCriteria": [
+    {
+      "id": "CRM-01",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Organization-level searchable speaker directory.",
+      "routeContract": "Deferred until the optional CRM module exposes a visible organization-level route.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM route contract"]
+    },
+    {
+      "id": "CRM-02",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Multi-criteria directory filters.",
+      "routeContract": "Deferred until the optional CRM module exposes visible filter controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM filter contract"]
+    },
+    {
+      "id": "CRM-03",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Contact profile notes and cross-event history.",
+      "routeContract": "Deferred until the optional CRM module exposes visible contact profiles.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM profile contract"]
+    },
+    {
+      "id": "CRM-04",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Organizer-defined contact metadata or tags.",
+      "routeContract": "Deferred until the optional CRM module exposes visible metadata/tag controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM metadata contract"]
+    },
+    {
+      "id": "CRM-05",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "CRM CSV contact import.",
+      "routeContract": "Deferred until the optional CRM module exposes a visible import route.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM import contract"]
+    },
+    {
+      "id": "CRM-06",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Near-duplicate detection and merge.",
+      "routeContract": "Deferred until the optional CRM module exposes visible duplicate/merge controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM merge contract"]
+    },
+    {
+      "id": "CRM-07",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Sourcing pipeline board and persistent stage moves.",
+      "routeContract": "Deferred until the optional CRM module exposes a visible pipeline route.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM pipeline contract"]
+    },
+    {
+      "id": "CRM-08",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Pipeline detail notes and stage history.",
+      "routeContract": "Deferred until the optional CRM module exposes visible pipeline detail.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM history contract"]
+    },
+    {
+      "id": "CRM-09",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Reusable saved contact segments.",
+      "routeContract": "Deferred until the optional CRM module exposes visible segment controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM segment contract"]
+    },
+    {
+      "id": "CRM-10",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Push a CRM contact into a specific event.",
+      "routeContract": "Deferred until the optional CRM module exposes visible event-linking controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM event-link contract"]
+    },
+    {
+      "id": "CRM-11",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "Bulk email from CRM directory.",
+      "routeContract": "Deferred until the optional CRM module exposes visible communication controls.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM communication contract"]
+    },
+    {
+      "id": "CRM-12",
+      "area": "speaker-crm",
+      "status": "deferred",
+      "summary": "CRM overview metrics and analytics widget.",
+      "routeContract": "Deferred until the optional CRM module exposes a visible overview route.",
+      "checkpoint": "Deferred; no CRM route is claimed by this harness.",
+      "evidence": ["explicit deferred status", "future CRM overview contract"]
+    }
+  ]
+}

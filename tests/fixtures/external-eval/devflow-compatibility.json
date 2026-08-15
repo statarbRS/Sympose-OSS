@@ -1,0 +1,30 @@
+{
+  "schema": "sympose-evaluator-compatibility/v1",
+  "source": "pinned KillMySaaS evaluator scenarios",
+  "profile": {
+    "workspaceSlug": "devflow",
+    "workspaceName": "DevFlow Conf 2027",
+    "callSlug": "devflow-conf-2027",
+    "organizer": "Jordan Alvarez",
+    "reviewer": "Sam Whitfield",
+    "applicantSpeakers": [
+      "Priya Raman",
+      "Marcus Okafor"
+    ],
+    "attendee": "Anonymous attendee"
+  },
+  "persisted": [
+    "workspace",
+    "organizer account",
+    "reviewer account",
+    "canonical people",
+    "public CFP and applicant sessions",
+    "review assignment and sealed blind artifact",
+    "approved commitment and publication release"
+  ],
+  "sharedMechanismBoundaries": {
+    "speaker": "The existing shared speaker adapter remains Ada Lovelace and is not relabeled as DevFlow.",
+    "attendee": "The existing shared attendee/widgets adapter remains Sympose Summit 2026 and is not relabeled as DevFlow."
+  },
+  "authentication": "Select the visible synthetic organizer or reviewer entry; no password or arbitrary credential is accepted."
+}

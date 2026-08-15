@@ -1,0 +1,357 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.breadcrumbs a,
+.eventMetric a,
+.eventLink,
+.emptyWorkspace a {
+  color: var(--primary);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs a:focus-visible,
+.eventMetric a:focus-visible,
+.eventLink:focus-visible,
+.emptyWorkspace a:focus-visible,
+.boundary summary:focus-visible,
+.tableRegion:focus-visible {
+  outline: 3px solid var(--focus-ring, #6d5dfc);
+  outline-offset: 3px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(1.8rem, 4vw, 3.1rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.hero p:last-child {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.eventCount {
+  display: grid;
+  min-width: 96px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  text-align: right;
+}
+
+.eventCount strong {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.6rem;
+}
+
+.eventCount span {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metricCard {
+  display: grid;
+  align-content: start;
+  gap: 13px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgb(15 23 42 / 4%);
+}
+
+.metricCard:first-child {
+  grid-column: span 2;
+}
+
+.metricHeader,
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.metricHeader h2,
+.sectionHeading h2,
+.emptyWorkspace h2 {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+}
+
+.state {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.state_available {
+  border-color: color-mix(in srgb, var(--success, #16794d) 35%, var(--border));
+  color: var(--success, #16794d);
+}
+
+.state_empty {
+  color: var(--text-muted);
+}
+
+.state_unavailable {
+  border-color: color-mix(in srgb, var(--warning, #9a5b00) 40%, var(--border));
+  color: var(--warning, #9a5b00);
+}
+
+.metricValue {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.4rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+
+.breakdown,
+.unavailable {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.unavailable {
+  padding: 10px 12px;
+  border-left: 3px solid var(--warning, #9a5b00);
+  background: var(--surface-muted);
+}
+
+.definitionList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--border);
+}
+
+.definitionList div {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--surface);
+}
+
+.definitionList dt {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.definitionList dd {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.boundary {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.boundary summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.boundary p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+.drilldown,
+.emptyWorkspace {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.sectionHeading > p,
+.emptyWorkspace > p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.tableRegion {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.table {
+  width: 100%;
+  min-width: 1140px;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.table caption {
+  padding: 10px 12px;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th:last-child,
+.table td:last-child {
+  border-right: 0;
+}
+
+.table thead th {
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.table tbody th {
+  min-width: 180px;
+  background: var(--surface);
+}
+
+.table tbody th > span {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.table td[data-state="unavailable"] {
+  background: color-mix(in srgb, var(--surface-muted) 65%, transparent);
+}
+
+.eventMetric {
+  display: grid;
+  gap: 6px;
+  min-width: 170px;
+}
+
+.eventMetric strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.eventMetric span {
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.eventMetric a {
+  width: fit-content;
+  margin-top: 4px;
+  font-size: 0.74rem;
+}
+
+@media (max-width: 900px) {
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricCard:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero,
+  .metricHeader,
+  .sectionHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .eventCount {
+    width: fit-content;
+    text-align: left;
+  }
+
+  .definitionList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 390px) {
+  .metricCard,
+  .drilldown,
+  .emptyWorkspace {
+    padding: 16px;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+}

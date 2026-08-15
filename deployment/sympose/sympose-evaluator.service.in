@@ -1,0 +1,44 @@
+[Unit]
+Description=Sympose loopback production evaluator
+Documentation=file://@REPOSITORY_ROOT@/docs/guides/production-evaluator-release.md
+After=network.target
+
+[Service]
+Type=exec
+User=@SERVICE_USER@
+Group=@SERVICE_GROUP@
+WorkingDirectory=@REPOSITORY_ROOT@
+UMask=0077
+ExecStartPre=@NODE_BINARY@ @REPOSITORY_ROOT@/scripts/production-release/release.mjs recover --config @CONFIG_PATH@
+ExecStartPre=@NODE_BINARY@ @REPOSITORY_ROOT@/scripts/production-release/release.mjs preflight --config @CONFIG_PATH@
+ExecStart=@NODE_BINARY@ @REPOSITORY_ROOT@/scripts/production-release/release.mjs start --config @CONFIG_PATH@
+ExecStartPost=@NODE_BINARY@ @REPOSITORY_ROOT@/scripts/production-release/release.mjs verify --config @CONFIG_PATH@ --wait-ms 90000
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec=120s
+TimeoutStopSec=30s
+KillSignal=SIGTERM
+KillMode=mixed
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_INET
+RestrictSUIDSGID=true
+LockPersonality=true
+IPAddressDeny=any
+IPAddressAllow=localhost
+ReadOnlyPaths=@REPOSITORY_ROOT@ @CONFIG_PATH@
+ReadWritePaths=@STATE_PARENT@
+StandardOutput=append:@LOG_ROOT@/application.log
+StandardError=append:@LOG_ROOT@/application.log
+
+[Install]
+WantedBy=multi-user.target

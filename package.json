@@ -1,0 +1,49 @@
+{
+  "name": "sympose-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sympose is a workspace-scoped participant graph and event operations platform for CFP, review, speaker readiness, scheduling, publication, and public agendas.",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@9.14.2",
+  "scripts": {
+    "dev": "SYMPOSE_DATA_MODE=synthetic-evaluator next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "pnpm test:unit",
+    "test:unit": "node scripts/verify-unit-test-lanes.mjs && node scripts/ptg-unit-gate.mjs",
+    "test:unit:serial": "node scripts/verify-unit-test-lanes.mjs && SYMPOSE_UNIT_DB_TEMPLATE=0 SYMPOSE_UNIT_TEST_MODE=serial vitest run tests/unit",
+    "test:unit:verify": "node scripts/verify-unit-test-lanes.mjs",
+    "test:unit:verify-order-collection": "node scripts/verify-unit-test-lanes.mjs && node scripts/ptg-unit-gate.mjs --verify-order-collection",
+    "test:watch": "vitest",
+    "db:reset": "node scripts/reset-db.mjs",
+    "e2e": "node scripts/run-e2e.mjs",
+    "e2e:headed": "node scripts/run-e2e.mjs --headed",
+    "e2e:install": "node scripts/install-browser.mjs",
+    "evaluator:release:start": "node scripts/start-evaluator-release.mjs",
+    "check": "pnpm typecheck && pnpm test && pnpm build"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "^9.1.2",
+    "@tanstack/react-virtual": "^3.14.9",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-aria-components": "^1.20.0",
+    "react-dom": "19.2.8",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}
